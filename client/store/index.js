@@ -4,4 +4,5 @@ import rootReducer from './slices';
 
 export default configureStore({
   reducer: rootReducer,
+  preloadedState: window.INITIAL_STATE,
 });
