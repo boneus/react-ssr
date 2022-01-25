@@ -20,4 +20,7 @@ export const UsersList = () => {
   return <div>Users:{renderUsers()}</div>;
 };
 
-export const loadData = (store) => store.dispatch(fetchUsers());
+export default {
+  element: <UsersList />,
+  loadData: (store) => store.dispatch(fetchUsers()),
+};
