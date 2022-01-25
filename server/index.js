@@ -1,14 +1,25 @@
 import 'regenerator-runtime/runtime';
 import Path from 'path';
 import Express from 'express';
+import httpProxy from 'express-http-proxy';
 import {matchRoutes} from 'react-router-dom';
 
 import renderer from '@server/utils/renderer';
 import createStore from '@server/utils/createStore';
 import routes from '@client/router/routes';
 
+const PORT = 3300;
 const app = Express();
 
+app.use(
+  '/api',
+  httpProxy('http://react-ssr-api.herokuapp.com', {
+    proxyReqOptDecorator(opts) {
+      opts.headers['x-forwarded-host'] = `localhost:${PORT}`;
+      return opts;
+    },
+  })
+);
 app.use(Express.static(Path.resolve(__dirname, '../public')));
 
 app.get('*', (req, res) => {
@@ -24,6 +35,6 @@ app.get('*', (req, res) => {
   });
 });
 
-app.listen(3300, () => {
-  console.log('Server is running on port 3300');
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

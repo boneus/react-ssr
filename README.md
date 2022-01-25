@@ -6,3 +6,4 @@
 4. Create separate stores for the client and for the server.
 5. Add `loadData` function to components. Call `loadData` on the components that need to be rendered on the requested route, wait for all the data to be fetched and return the markup.
 6. Hydrate Redux store.
+7. Setup a proxy on the render server which will handle only AJAX requests from our React app.
