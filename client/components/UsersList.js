@@ -1,6 +1,10 @@
 import React, {useEffect} from 'react';
 
-import {useUsersActions, useUsersSelector} from '@client/store/slices/users';
+import {
+  fetchUsers,
+  useUsersActions,
+  useUsersSelector,
+} from '@client/store/slices/users';
 
 export const UsersList = () => {
   const users = useUsersSelector();
@@ -15,3 +19,5 @@ export const UsersList = () => {
 
   return <div>Users:{renderUsers()}</div>;
 };
+
+export const loadData = (store) => store.dispatch(fetchUsers());

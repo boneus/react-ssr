@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Home from '@client/components/Home';
-import {UsersList} from '@client/components/UsersList';
+import {UsersList, loadData} from '@client/components/UsersList';
 
 export default [
   {
@@ -11,5 +11,6 @@ export default [
   {
     path: '/users',
     element: <UsersList />,
+    loadData,
   },
 ];
