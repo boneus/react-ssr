@@ -23,7 +23,7 @@ app.use(
 app.use(Express.static(Path.resolve(__dirname, '../public')));
 
 app.get('*', (req, res) => {
-  const store = createStore();
+  const store = createStore(req);
 
   // Find all the components that need to be rendered on the requested route and call its loadData function passing the store into it
   const promises = matchRoutes(routes, req.path).map(({route}) =>

@@ -5,7 +5,6 @@ import {
   bindActionCreators,
 } from '@reduxjs/toolkit';
 import {useDispatch, useSelector} from 'react-redux';
-import axios from 'axios';
 
 export const sliceName = 'USERS';
 
@@ -30,10 +29,8 @@ export const {setUsers} = usersSlice.actions;
 
 export const fetchUsers = createAsyncThunk(
   `${sliceName}/fetchUsers`,
-  async () => {
-    const response = await axios.get(
-      'https://react-ssr-api.herokuapp.com/users'
-    );
+  async (_, {extra: api}) => {
+    const response = await api.get('/users');
 
     return response.data;
   }
