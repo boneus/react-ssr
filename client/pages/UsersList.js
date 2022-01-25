@@ -22,5 +22,5 @@ export const UsersList = () => {
 
 export default {
   element: <UsersList />,
-  loadData: (store) => store.dispatch(fetchUsers()),
+  loadData: ({dispatch}) => dispatch(fetchUsers()),
 };
