@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import Path from 'path';
 import Express from 'express';
 
