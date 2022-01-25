@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@client": ["client"],
+      "@client/*": ["client/*"],
+      "@server": ["server"],
+      "@server/*": ["server/*"]
+    }
+  },
+  "include": ["./client", "./server"],
+  "exclude": ["node_modules"]
+}
