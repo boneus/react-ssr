@@ -6,9 +6,13 @@ import {fetchCurrentUser} from '@client/store/slices/auth';
 
 export const App = () => {
   return (
-    <div>
+    <div className='min-h-screen flex flex-col'>
       <Header />
-      <Outlet />
+      <main className='grow py-10'>
+        <div className='container mx-auto'>
+          <Outlet />
+        </div>
+      </main>
     </div>
   );
 };

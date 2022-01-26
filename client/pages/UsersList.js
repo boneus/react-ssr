@@ -17,7 +17,12 @@ export const UsersList = () => {
   const renderUsers = () =>
     users.map((user) => <li key={user.id}>{user.name}</li>);
 
-  return <div>Users:{renderUsers()}</div>;
+  return (
+    <div>
+      <h1 className='text-5xl mb-5'>Users</h1>
+      {renderUsers()}
+    </div>
+  );
 };
 
 export default {

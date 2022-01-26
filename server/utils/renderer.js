@@ -17,8 +17,11 @@ export default (req, store) => {
 
   return `
   <html>
-    <head></head>
-    <body>
+    <head>
+      <link rel="stylesheet" href="styles.css" />
+      <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class='bg-zinc-900 text-slate-50'>
       <div id="root">${content}</div>
       <script>
           window.INITIAL_STATE = ${serialize(store.getState())}
