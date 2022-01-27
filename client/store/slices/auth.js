@@ -13,12 +13,12 @@ const authSlice = createSlice({
   initialState: {currentUser: null},
   reducers: {
     setCurrentUser(state, {payload}) {
-      state.currentUser = payload;
+      state.currentUser = payload ? payload : false;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchCurrentUser.fulfilled, (state, {payload = false}) => {
-      state.currentUser = payload;
+    builder.addCase(fetchCurrentUser.fulfilled, (state, {payload}) => {
+      state.currentUser = payload ? payload : false;
     });
   },
 });
