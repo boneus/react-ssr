@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {Helmet} from 'react-helmet';
 
 import {
   fetchAdmins,
@@ -19,7 +20,7 @@ export const Admins = () => {
 
   const head = () => (
     <Helmet>
-      <title>PRotected: {admins.length} Admins Loaded</title>
+      <title>{`Protected: ${admins.length} Admins Loaded`}</title>
       <meta property='og:title' content='Protected Admins Page' />
     </Helmet>
   );

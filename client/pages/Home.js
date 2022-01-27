@@ -4,7 +4,7 @@ import {Helmet} from 'react-helmet';
 export const Home = () => {
   const head = () => (
     <Helmet>
-      <title>React SSR</title>
+      <title>{`React SSR`}</title>
       <meta property='og:title' content='React SSR' />
     </Helmet>
   );

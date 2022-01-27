@@ -6,7 +6,7 @@ import {setStatus} from '@client/store/slices/http';
 export const NotFound = () => {
   const head = () => (
     <Helmet>
-      <title>Page Not Found</title>
+      <title>{`Page Not Found`}</title>
       <meta property='og:title' content='Page Not Found' />
     </Helmet>
   );
