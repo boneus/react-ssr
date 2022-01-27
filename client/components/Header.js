@@ -34,13 +34,16 @@ export const Header = () => {
         <Link to='/' className='text-4xl !leading-20'>
           React SSR
         </Link>
+
         <div className='flex'>
           <NavLink to='/users' className={linkClassName}>
             Users
           </NavLink>
+
           <NavLink to='/admins' className={linkClassName}>
             Admins
           </NavLink>
+
           {authButton}
         </div>
       </div>

@@ -37,6 +37,7 @@ export const fetchCurrentUser = createAsyncThunk(
 
 export const useAuthActions = () => {
   const dispatch = useDispatch();
+
   return useMemo(
     () =>
       bindActionCreators({...authSlice.actions, fetchCurrentUser}, dispatch),
@@ -46,5 +47,6 @@ export const useAuthActions = () => {
 
 export const useAuthSelector = () => {
   const auth = useSelector((state) => state.auth);
+
   return useMemo(() => auth, [auth]);
 };

@@ -38,6 +38,7 @@ export const fetchUsers = createAsyncThunk(
 
 export const useUsersActions = () => {
   const dispatch = useDispatch();
+
   return useMemo(
     () => bindActionCreators({...usersSlice.actions, fetchUsers}, dispatch),
     [dispatch]
@@ -46,5 +47,6 @@ export const useUsersActions = () => {
 
 export const useUsersSelector = () => {
   const users = useSelector((state) => state.users);
+
   return useMemo(() => users, [users]);
 };

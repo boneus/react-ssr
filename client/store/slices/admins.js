@@ -38,6 +38,7 @@ export const fetchAdmins = createAsyncThunk(
 
 export const useAdminsActions = () => {
   const dispatch = useDispatch();
+
   return useMemo(
     () => bindActionCreators({...adminsSlice.actions, fetchAdmins}, dispatch),
     [dispatch]
@@ -46,5 +47,6 @@ export const useAdminsActions = () => {
 
 export const useAdminsSelector = () => {
   const admins = useSelector((state) => state.admins);
+
   return useMemo(() => admins, [admins]);
 };

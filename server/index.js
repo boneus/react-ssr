@@ -11,6 +11,10 @@ import createStore from '@client/store';
 
 const PORT = 3300;
 const app = Express();
+const axiosInstance = axios.create({
+  baseURL: 'http://react-ssr-api.herokuapp.com',
+  headers: {cookie: req.get('cookie') || ''},
+});
 
 app.use(
   '/api',
@@ -24,10 +28,6 @@ app.use(
 app.use(Express.static(Path.resolve(__dirname, '../public')));
 
 app.get('*', (req, res) => {
-  const axiosInstance = axios.create({
-    baseURL: 'http://react-ssr-api.herokuapp.com',
-    headers: {cookie: req.get('cookie') || ''},
-  });
   const store = createStore(axiosInstance);
 
   // Find all the components that need to be rendered on the requested route and call its loadData function passing the store into it

@@ -26,6 +26,7 @@ export const {setStatus, setRedirectUrl} = httpSlice.actions;
 
 export const useHttpActions = () => {
   const dispatch = useDispatch();
+
   return useMemo(
     () => bindActionCreators({...httpSlice.actions}, dispatch),
     [dispatch]
@@ -34,5 +35,6 @@ export const useHttpActions = () => {
 
 export const useHttpSelector = () => {
   const http = useSelector((state) => state.http);
+
   return useMemo(() => http, [http]);
 };
