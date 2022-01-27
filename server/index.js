@@ -6,7 +6,7 @@ import {matchRoutes} from 'react-router-dom';
 import axios from 'axios';
 
 import renderer from '@server/utils/renderer';
-import routes from '@client/router/routes';
+import getRoutes from '@client/router/routes';
 import createStore from '@client/store';
 
 const PORT = 3300;
@@ -31,14 +31,25 @@ app.get('*', (req, res) => {
   const store = createStore(axiosInstance);
 
   // Find all the components that need to be rendered on the requested route and call its loadData function passing the store into it
-  const promises = matchRoutes(routes, req.path).map(({route}) =>
-    route.loadData ? route.loadData(store) : null
-  );
+  const promises = matchRoutes(getRoutes(false, true), req.path)
+    .map(({route}) => (route.loadData ? route.loadData(store) : null))
+    // If one of the promises is rejected, Promise.all will still work
+    .map((promise) => {
+      if (promise)
+        return new Promise((resolve, reject) => {
+          promise.then(resolve).catch(resolve);
+        });
+    });
 
   Promise.all(promises).then(() => {
     const content = renderer(req, store);
+    const filledStore = store.getState();
 
-    if (store.getState().http.status === 404) {
+    if (filledStore.http.redirectUrl) {
+      return res.redirect(301, filledStore.http.redirectUrl);
+    }
+
+    if (filledStore.http.status === 404) {
       res.status(404);
     }
 

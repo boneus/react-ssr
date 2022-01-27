@@ -30,9 +30,7 @@ export const {setAdmins} = adminsSlice.actions;
 export const fetchAdmins = createAsyncThunk(
   `${sliceName}/fetchAdmins`,
   async (_, {extra: api}) => {
-    console.log('fetchAdmins');
     const response = await api.get('/admins');
-    console.log('fetchAdmins2', response);
 
     return response.data;
   }

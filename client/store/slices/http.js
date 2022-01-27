@@ -10,16 +10,19 @@ export const sliceName = 'HTTP';
 
 const httpSlice = createSlice({
   name: sliceName,
-  initialState: {status: 200},
+  initialState: {status: 200, redirectUrl: null},
   reducers: {
     setStatus(state, {payload}) {
       state.status = payload;
+    },
+    setRedirectUrl(state, {payload}) {
+      state.redirectUrl = payload;
     },
   },
 });
 
 export default httpSlice.reducer;
-export const {setStatus} = httpSlice.actions;
+export const {setStatus, setRedirectUrl} = httpSlice.actions;
 
 export const useHttpActions = () => {
   const dispatch = useDispatch();
