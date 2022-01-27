@@ -1,19 +1,17 @@
 import {configureStore} from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import rootReducer from './slices';
 
-const axiosInstance = axios.create({
-  baseURL: '/api',
-});
+const createStore = (thunkExtra, preloadedState = {}) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        thunk: {
+          extraArgument: thunkExtra,
+        },
+      }),
+  });
 
-export default configureStore({
-  reducer: rootReducer,
-  preloadedState: window.INITIAL_STATE,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      thunk: {
-        extraArgument: axiosInstance,
-      },
-    }),
-});
+export default createStore;

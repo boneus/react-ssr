@@ -8,3 +8,4 @@
 6. Hydrate Redux store.
 7. Setup a proxy on the render server which will handle only AJAX requests from our React app.
 8. Setup separate instances of Axios for the client and for the server.
+9. Add HTTP slice to the store to track the 404 status on the render server.

@@ -1,7 +1,9 @@
-import usersReducer from './users';
-import authReducer from './auth';
+import users from './users';
+import auth from './auth';
+import http from './http';
 
 export default {
-  users: usersReducer,
-  auth: authReducer,
+  users,
+  auth,
+  http,
 };

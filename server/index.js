@@ -3,10 +3,11 @@ import Path from 'path';
 import Express from 'express';
 import httpProxy from 'express-http-proxy';
 import {matchRoutes} from 'react-router-dom';
+import axios from 'axios';
 
 import renderer from '@server/utils/renderer';
-import createStore from '@server/utils/createStore';
 import routes from '@client/router/routes';
+import createStore from '@client/store';
 
 const PORT = 3300;
 const app = Express();
@@ -23,7 +24,11 @@ app.use(
 app.use(Express.static(Path.resolve(__dirname, '../public')));
 
 app.get('*', (req, res) => {
-  const store = createStore(req);
+  const axiosInstance = axios.create({
+    baseURL: 'http://react-ssr-api.herokuapp.com',
+    headers: {cookie: req.get('cookie') || ''},
+  });
+  const store = createStore(axiosInstance);
 
   // Find all the components that need to be rendered on the requested route and call its loadData function passing the store into it
   const promises = matchRoutes(routes, req.path).map(({route}) =>
@@ -31,7 +36,13 @@ app.get('*', (req, res) => {
   );
 
   Promise.all(promises).then(() => {
-    res.send(renderer(req, store));
+    const content = renderer(req, store);
+
+    if (store.getState().http.status === 404) {
+      res.status(404);
+    }
+
+    res.send(content);
   });
 });
 
