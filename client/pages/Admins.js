@@ -17,8 +17,16 @@ export const Admins = () => {
   const renderAdmins = () =>
     admins.map((admin) => <li key={admin.id}>{admin.name}</li>);
 
+  const head = () => (
+    <Helmet>
+      <title>PRotected: {admins.length} Admins Loaded</title>
+      <meta property='og:title' content='Protected Admins Page' />
+    </Helmet>
+  );
+
   return (
     <div>
+      {head()}
       <h1 className='text-5xl mb-5'>Admins (protected list)</h1>
       {renderAdmins()}
     </div>

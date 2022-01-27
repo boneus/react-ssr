@@ -3,6 +3,7 @@ import {renderToString} from 'react-dom/server';
 import {StaticRouter} from 'react-router-dom/server';
 import {Provider} from 'react-redux';
 import serialize from 'serialize-javascript';
+import {Helmet} from 'react-helmet';
 
 import AppRouter from '@client/router';
 
@@ -15,9 +16,13 @@ export default (req, store) => {
     </Provider>
   );
 
+  const helmet = Helmet.renderStatic();
+
   return `
   <html>
     <head>
+      ${helmet.title.toString()}
+      ${helmet.meta.toString()}
       <link rel="stylesheet" href="styles.css" />
       <script src="https://cdn.tailwindcss.com"></script>
     </head>
