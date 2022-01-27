@@ -2,7 +2,8 @@ import React from 'react';
 
 import App from '@client/App';
 import Home from '@client/pages/Home';
-import UsersList from '@client/pages/UsersList';
+import Users from '@client/pages/Users';
+import Admins from '@client/pages/Admins';
 import NotFound from '@client/pages/NotFound';
 
 export default [
@@ -15,7 +16,11 @@ export default [
       },
       {
         path: '/users',
-        ...UsersList,
+        ...Users,
+      },
+      {
+        path: '/admins',
+        ...Admins,
       },
       {path: '*', ...NotFound},
     ],

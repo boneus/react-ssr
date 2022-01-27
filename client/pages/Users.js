@@ -6,7 +6,7 @@ import {
   useUsersSelector,
 } from '@client/store/slices/users';
 
-export const UsersList = () => {
+export const Users = () => {
   const users = useUsersSelector();
   const {fetchUsers} = useUsersActions();
 
@@ -26,6 +26,6 @@ export const UsersList = () => {
 };
 
 export default {
-  element: <UsersList />,
+  element: <Users />,
   loadData: ({dispatch}) => dispatch(fetchUsers()),
 };

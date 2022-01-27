@@ -1,9 +1,11 @@
-import users from './users';
 import auth from './auth';
+import users from './users';
+import admins from './admins';
 import http from './http';
 
 export default {
-  users,
   auth,
+  users,
+  admins,
   http,
 };
